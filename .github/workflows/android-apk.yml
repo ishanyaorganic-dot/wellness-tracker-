@@ -15,11 +15,11 @@ jobs:
           java-version: 17
       - name: Set up Android SDK command-line tools
         uses: android-actions/setup-android@v3
-          # No SDK packages are installed by this action; install them explicitly below.
-      - name: Install Android SDK packages
+        with:
+          packages: platform-tools
+          accept-android-sdk-licenses: true
+      - name: Install Android SDK platform and build tools
         run: |
-          yes | sdkmanager --licenses
-          sdkmanager --install "platform-tools"
           sdkmanager --install "platforms;android-35"
           sdkmanager --install "build-tools;35.0.0"
       - name: Set up Gradle
